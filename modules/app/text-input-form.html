@@ -1,32 +1,19 @@
 <section id=form_container__ID>
 	<div id=header__ID>
-		Test
+		Text input
 	</div>
 	<form id=F__ID>
 		<div class="container">
 			<div class="row row__ID">
 				<div class=col>
-					<span>DOB</span>
-					<input type="text" class="form-control" name=DOB />
+					<span>First name</span>
+					<input type="text" class="form-control" name=First_name />
 				</div>
 			</div>
 			<div class="row row__ID">
 				<div class=col>
-					<span>Gender</span>
-					<input type="text" class="form-control" name=Gender />
-				</div>
-			</div>
-            <div class="row row__ID">
-				<div class=col>
-					<span>Document</span>
-					<input type="file" class="form-control" name=Document />
-                    <u style='cursor:pointer' id=link_Document__ID></u>&nbsp&nbsp&nbsp<u style='cursor:pointer' id=x_Document__ID>X</u>
-				</div>
-			</div>
-            <div class="row row__ID">
-				<div class=col>
-					<span>Document 2</span>
-					<input type="file" class="form-control" name=Document2 />
+					<span>Last name</span>
+					<input type="text" class="form-control" name=Last_name />
 				</div>
 			</div>
 			<br>
@@ -38,22 +25,11 @@
 		</div>
 	</form>
 </section>
-VmInclude:__COMPONENT__/m/model.01.html
 <script>
 	function F__ID(){
 		//-------------------------------------
         VmInclude:__COMPONENT__/f/form.01.js
 		//-------------------------------------
-		m.before_submit=function(record,dbv){
-			return true;
-        };
-        //-------------------------------------
-        m.old_load=m.load;
-        m.load=function(){
-            m.old_load();
-            m.set_file_link("Document");
-        }
-        //-------------------------------------
 	}
 </script>
 <style>
