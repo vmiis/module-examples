@@ -1,0 +1,8 @@
+{
+	"modules":
+	{
+		"home":                 {"url":"https://vmiis.github.io/module-examples/modules/system/home.html"},
+		"text-input-data":      {"App":"moduule","Table":"text-input","url":"https://vmiis.github.io/module-examples/modules/app/text-input-data.html","form_module":"text-input-form"},
+		"text-input-form":      {"App":"moduule","Table":"text-input","url":"https://vmiis.github.io/module-examples/modules/app/text-input-form.html"}
+	}
+}
