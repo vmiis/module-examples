@@ -37,29 +37,6 @@
             $vm.hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
             $vm.debug_message=true; //show debug message in console
             //------------------------------------------
-            /*
-            if($vm.default_production=='No'){
-                if(window.location.toString().indexOf('database=production')!=-1){
-                    $vm.server          ='production';
-                    $VmAPI.api_base     =$vm.api_path_production;
-                }
-                else{
-                    $vm.server          ='development';
-                    $VmAPI.api_base     =$vm.api_path_development;
-                }
-            }
-            else {
-                if(window.location.toString().indexOf('database=development')!=-1){
-                    $vm.server          ='development';
-                    $VmAPI.api_base     =$vm.api_path_development;
-                }
-                else{
-                    $vm.server          ='production';
-                    $VmAPI.api_base     =$vm.api_path_production;
-                }
-            }
-            */
-            //------------------------------------------
             $vm.show_user=function(){
             	var third=""
             	//if($vm.user_puid=="1") third=" (Google)";

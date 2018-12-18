@@ -42,9 +42,10 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.2.1.min.js"></script>
     <script main>
         //------------------------------------
-        $vm={};$vm.ver=[0.05,0.01];
+        $vm={};$vm.ver=[0.06,0.02];
         $vm.start_time=new Date().getTime();
-        $vm.api_address="https://api.wappsystem.com:3000";
+        $vm.api_address="https://api.wappsystem.com";
+        if(window.location.toString().indexOf('_p=1')!=-1) $vm.api_address="https://api.wappsystem.com:3000";
         $vm.vm_router=1;
         if(window.location.hostname=='127.0.0.1' || window.location.hostname=='localhost') $vm.localhost=true;
         //------------------------------------
