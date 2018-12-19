@@ -6,18 +6,20 @@
         //-------------------------------------
         VmInclude:__COMPONENT__/g/grid.01.js
         //-------------------------------------
-        var fields="First_name,Last_name";
+        var fields="First_name,Last_name,Bike,Car,Boat,Approved";
         m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
         m.form_fields=fields;
         //-------------------------------------
         m.cell_render=function(records,I,field,td){
-            /*
             switch(field){
-                case 'xxx':
-                    td.html(xxx);
+                case 'Bike':
+                case 'Car':
+                case 'Boat':
+                case 'Approved':
+                    td.html("");
+                    if(records[I].Data[field]=='on')  td.html("&#10004;");
                     break;
             }
-            */
         }
         //-------------------------------------
     }

@@ -27,6 +27,7 @@
                         <span class="vm-dropbtn"><i class="fa fa-list"></i> Modules <i class="fa fa-caret-down"></i></span>
                         <div class="vm-dropdown-content">
                             <a href="?/text-input-data">Text input</a>
+                            <a href="?/checkbox-data">Checkbox</a>
                         </div>
                     </div>
                     <a href="https://backoffice.wappsystem.com.au">Backoffice</a>
@@ -42,11 +43,11 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.2.1.min.js"></script>
     <script main>
         //------------------------------------
-        $vm={};$vm.ver=[0.06,0.02];
+        $vm={};$vm.ver=[0.07,0.07];
         $vm.start_time=new Date().getTime();
         $vm.api_address="https://api.wappsystem.com";
         if(window.location.toString().indexOf('_p=1')!=-1) $vm.api_address="https://api.wappsystem.com:3000";
-        $vm.vm_router=1;
+        //$vm.vm_router=1;
         if(window.location.hostname=='127.0.0.1' || window.location.hostname=='localhost') $vm.localhost=true;
         //------------------------------------
         $vm.module_links=[
@@ -54,7 +55,7 @@
         ];
         $vm.module_list={
             "os":  {"url":"https://vmiis.github.io/module-examples/modules/o/os.html"},
-            "home":{"url":"https://vmiis.github.io/module-examples/modules/h/home.html"},
+            "home":{"url":"https://vmiis.github.io/module-examples/modules/h/home.html","router":1},
         }
         $vm.component_list={
         }

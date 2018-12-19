@@ -1,7 +1,9 @@
 {
 	"modules":
 	{
-		"text-input-data":      {"App":"module","Table":"text-input","url":"https://vmiis.github.io/module-examples/modules/t/text-input-data.html","form_module":"text-input-form"},
-		"text-input-form":      {"App":"module","Table":"text-input","url":"https://vmiis.github.io/module-examples/modules/t/text-input-form.html"}
+		"text-input-data":    {"App":"module","Table":"text-input","url":"https://vmiis.github.io/module-examples/modules/t/text-input-data.html","form_module":"text-input-form","router":1},
+		"text-input-form":    {"App":"module","Table":"text-input","url":"https://vmiis.github.io/module-examples/modules/t/text-input-form.html"},
+        "checkbox-data":      {"App":"module","Table":"checkbox","url":"https://vmiis.github.io/module-examples/modules/c/checkbox-data.html","form_module":"checkbox-form","router":1},
+		"checkbox-form":      {"App":"module","Table":"checkbox","url":"https://vmiis.github.io/module-examples/modules/c/checkbox-form.html"}
 	}
 }
