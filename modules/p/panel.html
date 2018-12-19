@@ -1,0 +1,67 @@
+<div id=D__ID>
+    <div id=panel__ID>
+    	<div class='nav__ID' style='float:unset;'>
+    		<span></span>
+            <ul>
+    			<li><a href=?/text-input-data>Text input</a></li>
+                <li><a href=?/checkbox-data>Check box</a></li>
+                <li><a href=?/date-data>Date</a></li>
+                <li><a href=?/autocomplete-data>Autocomplete</a></li>
+            </ul>
+    	</div>
+    </div>
+    <script>
+        function F__ID(){
+            //--------------------------------------------------------
+            $vm.vm["__ID"].show=function(){
+                document.title="Panel | "+$vm.default_title;
+                $("meta[name='description']").attr("content","Control Panel");
+            }
+            //--------------------------------------------------------
+            var this_module=$vm.module_list[$vm.vm['__ID'].name];
+            var prefix=this_module.prefix; if(prefix==undefined) prefix="";
+            //--------------------------------------------------------
+            $('#panel__ID a').on('click',function(e){
+                e.preventDefault();
+                var href=$(this).attr('href');
+                if(href!=undefined){
+                    href=href.replace('?\/','');
+                    href=href.replace(/\//g,'_');
+                    $vm.load_module(prefix+href,'',{});
+                }
+            })
+            //--------------------------------------------------------
+        }
+    </script>
+    <style>
+        #D__ID{
+    		background-color:#fff;
+    		height:100%;
+    		overflow: auto;
+    		animation: vm_module_fadein 1.0s;
+    	}
+        #panel__ID{
+    		padding:20px 0 0 20px;
+    	}
+    	#panel__ID a {
+    		text-decoration: none;
+    	}
+    	#panel__ID a:link {
+    		color:#555;
+    	}
+    	#panel__ID a:visited {
+    		color:#555;
+    	}
+    	#panel__ID a:hover {
+    		color:red;
+    	}
+    	#panel__ID a:active {
+    		color:#555;
+    	}
+    	@media screen and (max-width:768px){
+    		#panel__ID{
+    			padding:10px 0 0 10px;
+    		}
+    	}
+    </style>
+</div>

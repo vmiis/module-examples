@@ -1,9 +1,14 @@
 {
 	"modules":
 	{
+		"panel":    		  {"url":"https://vmiis.github.io/module-examples/modules/p/panel.html","router":1},
 		"text-input-data":    {"App":"module","Table":"text-input","url":"https://vmiis.github.io/module-examples/modules/t/text-input-data.html","form_module":"text-input-form","router":1},
 		"text-input-form":    {"App":"module","Table":"text-input","url":"https://vmiis.github.io/module-examples/modules/t/text-input-form.html"},
         "checkbox-data":      {"App":"module","Table":"checkbox","url":"https://vmiis.github.io/module-examples/modules/c/checkbox-data.html","form_module":"checkbox-form","router":1},
-		"checkbox-form":      {"App":"module","Table":"checkbox","url":"https://vmiis.github.io/module-examples/modules/c/checkbox-form.html"}
+		"checkbox-form":      {"App":"module","Table":"checkbox","url":"https://vmiis.github.io/module-examples/modules/c/checkbox-form.html"},
+		"date-data":      	  {"App":"module","Table":"date","url":"https://vmiis.github.io/module-examples/modules/d/date-data.html","form_module":"date-form","router":1},
+		"date-form":      	  {"App":"module","Table":"date","url":"https://vmiis.github.io/module-examples/modules/d/date-form.html"},
+		"autocomplete-data":  {"App":"module","Table":"autocomplete","url":"https://vmiis.github.io/module-examples/modules/a/autocomplete-data.html","form_module":"autocomplete-form","router":1},
+		"autocomplete-form":  {"App":"module","Table":"autocomplete","url":"https://vmiis.github.io/module-examples/modules/a/autocomplete-form.html"}
 	}
 }

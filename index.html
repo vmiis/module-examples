@@ -19,17 +19,11 @@
                 </div>
                 <div class=vm-desk-logo>
                     <span id=vm-logo-label-A>Business Portal</span><br>
-                    <span id=vm-logo-label-B>Data Collection and Collaboration</span>
+                    <span id=vm-logo-label-B>Modular distributed web application</span>
                 </div>
                 <div menu id="vm-menu">
                     <a href="?/home"><i class="fa fa-home"></i> Home</a>
-                    <div class="vm-dropdown">
-                        <span class="vm-dropbtn"><i class="fa fa-list"></i> Modules <i class="fa fa-caret-down"></i></span>
-                        <div class="vm-dropdown-content">
-                            <a href="?/text-input-data">Text input</a>
-                            <a href="?/checkbox-data">Checkbox</a>
-                        </div>
-                    </div>
+                    <a href="?/panel">Modules</a>
                     <a href="https://backoffice.wappsystem.com.au">Backoffice</a>
                     <a id=vm_signin onclick="$vm.signin();"><i class="fa fa-user"></i> Sign In</a>
                     <a class=vm-hide id=vm_signout onclick=$vm.signout()><i class="fa fa-user"></i> Sign Out</a>
@@ -73,8 +67,7 @@
         for(p in $vm.component_list) $vm.component_list[p].url=$vm.local_url($vm.component_list[p].url);
         //------------------------------------
         $vm.default_title="Modular distributed web application";
-        var txt=", Your company name. <span id=FL_0>Open source code on GitHub (<a style='color:#fff' target=_blank href=https://github.com/vmiis>https://github.com/vmiis</a>).";
-        txt+=" More templates on <a style='color:#fff' target=_blank href=https://www.vmiis.com >https://www.vmiis.com</a>. </span>"
+        var txt=", Modules Examples";
         $('#text_0').html("Copyright &copy; "+(new Date()).getFullYear()+txt);
         //------------------------------------
         $('#c_header').contents().appendTo('#header');
