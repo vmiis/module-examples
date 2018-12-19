@@ -53,7 +53,8 @@
             "https://vmiis.github.io/module-examples/modules.json",
         ];
         $vm.module_list={
-            "home":{"url":"https://vmiis.github.io/module-examples/modules/system/home.html"},
+            "os":  {"url":"https://vmiis.github.io/module-examples/modules/o/os.html"},
+            "home":{"url":"https://vmiis.github.io/module-examples/modules/h/home.html"},
         }
         $vm.component_list={
         }
@@ -353,17 +354,16 @@
     </style>
     <script boot>
         //------------------------------------
-        var apppath=window.location.href.substring(0, window.location.href.lastIndexOf('/')).split('\/?')[0];
-        var url1=apppath+"/modules/system/os.html";
+        var url1=$vm.module_list["os"].url;
         var urls=[url1]; $vm.module_start_id=1;
         //---------------------------------------------
         $(urls).each(function(index,url){
-            var ver=localStorage.getItem(apppath+url+"ver");
-            var txt=localStorage.getItem(apppath+url+"txt");
+            var ver=localStorage.getItem(url+"ver");
+            var txt=localStorage.getItem(url+"txt");
             if(ver!=$vm.ver[0] || txt==null || $vm.localhost==true){
                 $.get(url+'?_='+new Date().getTime(),function(new_txt){
-                    localStorage.setItem(apppath+url+"txt",new_txt);
-                    localStorage.setItem(apppath+url+"ver",$vm.ver[0]);
+                    localStorage.setItem(url+"txt",new_txt);
+                    localStorage.setItem(url+"ver",$vm.ver[0]);
                     console.log('loading from url. '+url);
                     $('#content').append(new_txt.replace(/__ID/g,'_'+index));
                 },'text');
