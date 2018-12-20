@@ -41,15 +41,16 @@
         $vm.start_time=new Date().getTime();
         $vm.api_address="https://api.wappsystem.com";
         if(window.location.toString().indexOf('_p=1')!=-1) $vm.api_address="https://api.wappsystem.com:3000";
-        //$vm.vm_router=1;
         if(window.location.hostname=='127.0.0.1' || window.location.hostname=='localhost') $vm.localhost=true;
         //------------------------------------
         $vm.module_links=[
+            //low priority modules`
             "https://vmiis.github.io/module-examples/modules.json",
         ];
         $vm.module_list={
-            "os":  {"url":"https://vmiis.github.io/module-examples/modules/o/os.html"},
-            "home":{"url":"https://vmiis.github.io/module-examples/modules/h/home.html","router":1},
+            //high priority modules`
+            "frame":  {"url":"https://vmiis.github.io/module-examples/modules/f/frame.html"},
+            "home":   {"url":"https://vmiis.github.io/module-examples/modules/h/home.html","router":1},
         }
         $vm.component_list={
         }
@@ -57,14 +58,15 @@
         $vm.local_url=function(url){
             var urlR=url;
             if($vm.localhost==true){
+                //using local modules for development
                 urlR=urlR.replace('https://vmiis.github.io/module-examples/','http://127.0.0.1:8000/vmiis/module-examples/');
             }
             return urlR;
         }
         //------------------------------------
-        for(p in $vm.module_links) $vm.module_links[p]=$vm.local_url($vm.module_links[p]);
-        for(p in $vm.module_list) $vm.module_list[p].url=$vm.local_url($vm.module_list[p].url);
-        for(p in $vm.component_list) $vm.component_list[p].url=$vm.local_url($vm.component_list[p].url);
+        for(p in $vm.module_links)      $vm.module_links[p]=$vm.local_url($vm.module_links[p]);
+        for(p in $vm.module_list)       $vm.module_list[p].url=$vm.local_url($vm.module_list[p].url);
+        for(p in $vm.component_list)    $vm.component_list[p].url=$vm.local_url($vm.component_list[p].url);
         //------------------------------------
         $vm.default_title="Modular distributed web application";
         var txt=", Modules Examples";
@@ -346,9 +348,9 @@
             to {max-height: 1000px;}
         }
     </style>
-    <script boot>
+    <script frame-code>
         //------------------------------------
-        var url1=$vm.module_list["os"].url;
+        var url1=$vm.module_list["frame"].url;
         var urls=[url1]; $vm.module_start_id=1;
         //---------------------------------------------
         $(urls).each(function(index,url){
