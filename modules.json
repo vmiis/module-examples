@@ -1,14 +1,29 @@
 {
 	"modules":
 	{
+		"2-columns-contents": {"url":"https://vmiis.github.io/module-examples/modules/2/2-columns-contents.html","router":1},
+		"about":  		  	  {"url":"https://vmiis.github.io/module-examples/modules/a/about.html","router":1},
+		"autocomplete-data":  {"url":"https://vmiis.github.io/module-examples/modules/a/autocomplete-data.html","App":"module","Table":"autocomplete","form_module":"autocomplete-form","router":1},
+		"autocomplete-form":  {"url":"https://vmiis.github.io/module-examples/modules/a/autocomplete-form.html","App":"module","Table":"autocomplete"},
+		"bubble":  		  	  {"url":"https://vmiis.github.io/module-examples/modules/b/bubble.html","router":1},
+		"carousel":  		  {"url":"https://vmiis.github.io/module-examples/modules/c/carousel.html","router":1},
+		"checkbox-data":      {"url":"https://vmiis.github.io/module-examples/modules/c/checkbox-data.html","App":"module","Table":"checkbox","form_module":"checkbox-form","router":1},
+		"checkbox-form":      {"url":"https://vmiis.github.io/module-examples/modules/c/checkbox-form.html","App":"module","Table":"checkbox"},
+		"consent-data":  	  {"url":"https://vmiis.github.io/module-examples/modules/c/consent-data.html","App":"module","Table":"consent","form_module":"consent-form","router":1},
+		"consent-form":  	  {"url":"https://vmiis.github.io/module-examples/modules/c/consent-form.html","App":"module","Table":"consent","router":1},
+		"date-data":      	  {"url":"https://vmiis.github.io/module-examples/modules/d/date-data.html","App":"module","Table":"date","form_module":"date-form","router":1},
+		"date-form":      	  {"url":"https://vmiis.github.io/module-examples/modules/d/date-form.html","App":"module","Table":"date"},
+		"fountains-illumination":{"url":"https://vmiis.github.io/module-examples/modules/f/fountains-illumination.html","router":1},
+		"hello-world": 		  {"url":"https://vmiis.github.io/module-examples/modules/h/hello-world.html","router":1},
+		"nasa":  		  	  {"url":"https://vmiis.github.io/module-examples/modules/n/nasa.html","router":1},
+		"nyan":  		  	  {"url":"https://vmiis.github.io/module-examples/modules/n/nyan.html","router":1},
 		"panel":    		  {"url":"https://vmiis.github.io/module-examples/modules/p/panel.html","router":1},
-		"text-input-data":    {"App":"module","Table":"text-input","url":"https://vmiis.github.io/module-examples/modules/t/text-input-data.html","form_module":"text-input-form","router":1},
-		"text-input-form":    {"App":"module","Table":"text-input","url":"https://vmiis.github.io/module-examples/modules/t/text-input-form.html"},
-        "checkbox-data":      {"App":"module","Table":"checkbox","url":"https://vmiis.github.io/module-examples/modules/c/checkbox-data.html","form_module":"checkbox-form","router":1},
-		"checkbox-form":      {"App":"module","Table":"checkbox","url":"https://vmiis.github.io/module-examples/modules/c/checkbox-form.html"},
-		"date-data":      	  {"App":"module","Table":"date","url":"https://vmiis.github.io/module-examples/modules/d/date-data.html","form_module":"date-form","router":1},
-		"date-form":      	  {"App":"module","Table":"date","url":"https://vmiis.github.io/module-examples/modules/d/date-form.html"},
-		"autocomplete-data":  {"App":"module","Table":"autocomplete","url":"https://vmiis.github.io/module-examples/modules/a/autocomplete-data.html","form_module":"autocomplete-form","router":1},
-		"autocomplete-form":  {"App":"module","Table":"autocomplete","url":"https://vmiis.github.io/module-examples/modules/a/autocomplete-form.html"}
+		"particle":  		  {"url":"https://vmiis.github.io/module-examples/modules/p/particle.html","router":1},
+		"prices":  		  	  {"url":"https://vmiis.github.io/module-examples/modules/p/prices.html","router":1},
+		"services":  	  	  {"url":"https://vmiis.github.io/module-examples/modules/s/services.html","router":1},
+		"snow":  		  	  {"url":"https://vmiis.github.io/module-examples/modules/s/snow.html","router":1},
+		"text-input-data":    {"url":"https://vmiis.github.io/module-examples/modules/t/text-input-data.html","App":"module","Table":"text-input","form_module":"text-input-form","router":1},
+		"text-input-form":    {"url":"https://vmiis.github.io/module-examples/modules/t/text-input-form.html","App":"module","Table":"text-input"},
+		"trainers":  		  {"url":"https://vmiis.github.io/module-examples/modules/t/trainers.html","router":1}
 	}
 }

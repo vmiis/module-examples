@@ -1,13 +1,17 @@
 <section id=form_container__ID>
 	<div id=header__ID>
-		Checkbox
+		Auto complete
 	</div>
 	<form id=F__ID>
 		<div class="container">
 			<div class="row row__ID">
-				<div class=col>
+				<div class="col-sm col-lg-8">
 					<span>Client</span>
 					<input type="text" class="form-control" name=Client id=Client__ID data-id=Client />
+				</div>
+				<div class="col-sm col-lg-4">
+					<span>Client ID</span>
+					<input type="text" class="form-control" name=Client_uid readonly />
 				</div>
 			</div>
 			<div class="row row__ID">
@@ -31,23 +35,36 @@
 		//-------------------------------------
         VmInclude:__COMPONENT__/f/form.01.js
 		//-------------------------------------
-		var autocomplete_req_1={cmd:"find",auto:"First_name",query:{App:"module",Table:"text-input"},options:{},skip:0,limit:10}
+		var autocomplete_req_1={cmd:"find",field:"First_name",query:{App:"module",Table:"text-input"},options:{},skip:0,limit:10}
 		var autocomplete_list_1=function(records){
 		    var items=[];
 		    for(var i=0;i<records.length;i++){
 		        var obj={};
 		        obj.label=records[i].Data.First_name+' '+records[i].Data.Last_name;
 				obj['UID']=records[i].UID;
-				obj['Notes']=records[i].Data['Notes'];
 		        items.push(obj);
 		    }
 		    return items;
 		}
 		//-------------------------------------
-		var autocomplete_callback_1=function(item){
-			//$("#F__ID input[name="+key+"]").val($vm.text(value));
+		var autocomplete_callback_1=function(items){
+			$("#F__ID input[name=Client_uid]").val(items["UID"]);
 		}
 		//-------------------------------------
+		var start=function(){
+    		$vm.autocomplete($('#Client__ID'),autocomplete_req_1,autocomplete_list_1,autocomplete_callback_1);
+        }
+		//-------------------------------------
+        var I=0;
+        var loop__ID=setInterval(function (){
+            if($vm['jquery-ui-min-js']!=undefined){
+                clearInterval(loop__ID); start();
+            }
+            I++; if(I>50){
+                clearInterval(loop__ID); alert("jquery-ui.min.js is not installed.");
+            }
+        },100);
+        //-------------------------------------
 		$vm.autocomplete=function($div,req,autocomplete_list,callback){
 		    var field=$div.attr('data-id');
 		    $div.focus(function(){$div.autocomplete("search","");});
@@ -71,20 +88,6 @@
 		    })
 		}
 		//-------------------------------------
-		var start=function(){
-    		$vm.autocomplete($('#Client__ID'),autocomplete_req_1,autocomplete_list_1,autocomplete_callback_1);
-        }
-		//-------------------------------------
-        var I=0;
-        var loop__ID=setInterval(function (){
-            if($vm['jquery-ui-min-js']!=undefined){
-                clearInterval(loop__ID); start();
-            }
-            I++; if(I>50){
-                clearInterval(loop__ID); alert("jquery-ui.min.js is not installed.");
-            }
-        },100);
-        //-------------------------------------
 	}
 </script>
 <style>
