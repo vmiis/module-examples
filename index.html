@@ -37,26 +37,58 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.2.1.min.js"></script>
     <script main>
         //------------------------------------
-        $vm={};$vm.ver=[0.08,0.07];
+        $vm={};$vm.ver=[0.09,0.09];
         $vm.start_time=new Date().getTime();
         $vm.api_address="https://api.wappsystem.com";
         if(window.location.toString().indexOf('_p=1')!=-1) $vm.api_address="https://api.wappsystem.com:3000";
         if(window.location.hostname=='127.0.0.1' || window.location.hostname=='localhost') $vm.localhost=true;
         //------------------------------------
-        $vm.module_links=[
-            //low priority modules`
-            "https://vmiis.github.io/module-examples/modules.json",
-        ];
         $vm.module_list={
-            //high priority modules`
-            "frame":  {"url":"https://vmiis.github.io/module-examples/modules/f/frame.html"},
-            "home":   {"url":"https://vmiis.github.io/module-examples/modules/h/home.html","router":1},
-        }
-        $vm.component_list={
+            "frame":                        {"url":"$A/modules/f/frame.html"},
+            "home":                         {"url":"$A/modules/h/home.html","router":1},
+            "2-columns-contents": 			{"url":"$A/modules/2/2-columns-contents.html","router":1},
+    		"about":  		  	  			{"url":"$A/modules/a/about.html","router":1},
+    		"autocomplete-data":  			{"url":"$A/modules/a/autocomplete-data.html","App":"module","Table":"autocomplete","form_module":"autocomplete-form","router":1},
+    		"autocomplete-form":  			{"url":"$A/modules/a/autocomplete-form.html","App":"module","Table":"autocomplete"},
+    		"bubble":  		  	  			{"url":"$A/modules/b/bubble.html","router":1},
+    		"clinical-trials-data-entry": 	{"url":"$A/modules/c/clinical-trials-data-entry.html"},
+    		"carousel":  		  			{"url":"$A/modules/c/carousel.html","router":1},
+    		"checkbox-data":      			{"url":"$A/modules/c/checkbox-data.html","App":"module","Table":"checkbox","form_module":"checkbox-form","router":1},
+    		"checkbox-form":      			{"url":"$A/modules/c/checkbox-form.html","App":"module","Table":"checkbox"},
+    		"consent-data":  	  			{"url":"$A/modules/c/consent-data.html","App":"module","Table":"consent","form_module":"consent-form","router":1},
+    		"consent-form":  	  			{"url":"$A/modules/c/consent-form.html","App":"module","Table":"consent","router":1},
+            "color-data":      	  			{"url":"$A/modules/c/color-data.html","App":"module","Table":"color","form_module":"color-form","router":1},
+    		"color-form":      	  			{"url":"$A/modules/c/color-form.html","App":"module","Table":"color"},
+    		"date-data":      	  			{"url":"$A/modules/d/date-data.html","App":"module","Table":"date","form_module":"date-form","router":1},
+    		"date-form":      	 		 	{"url":"$A/modules/d/date-form.html","App":"module","Table":"date"},
+            "ess-data":      	  			{"url":"$A/modules/e/epworth-sleepiness-scale-data.html","App":"module","Table":"ess","form_module":"ess-form","router":1},
+    		"ess-form":      	  			{"url":"$A/modules/e/epworth-sleepiness-scale-form.html","App":"module","Table":"ess"},
+            "file-data":      	  			{"url":"$A/modules/f/file-data.html","App":"module","Table":"file","form_module":"file-form","router":1},
+    		"file-form":      	  			{"url":"$A/modules/f/file-form.html","App":"module","Table":"file"},
+            "fountains-illumination":		{"url":"$A/modules/f/fountains-illumination.html","router":1},
+    		"hello-world": 		  			{"url":"$A/modules/h/hello-world.html","router":1},
+    		"nasa":  		  	  			{"url":"$A/modules/n/nasa.html","router":1},
+    		"nyan":  		  	  			{"url":"$A/modules/n/nyan.html","router":1},
+    		"online-questionnaire-setup": 	{"url":"$A/modules/o/online-questionnaire-setup.html","App":"module","Table":"participant"},
+    		"panel":    		  			{"url":"$A/modules/p/panel.html","router":1},
+    		"particle":  		  			{"url":"$A/modules/p/particle.html","router":1},
+    		"prices":  		  	  			{"url":"$A/modules/p/prices.html","router":1},
+    		"participant-data":   			{"url":"$A/modules/p/participant-data.html","App":"module","Table":"participant","form_module":"participant-form","router":1},
+    		"participant-form":   			{"url":"$A/modules/p/participant-form.html","App":"module","Table":"participant"},
+            "radio-data":      	  			{"url":"$A/modules/r/radio-data.html","App":"module","Table":"radio","form_module":"radio-form","router":1},
+    		"radio-form":      	  			{"url":"$A/modules/r/radio-form.html","App":"module","Table":"radio"},
+            "select-data":        			{"url":"$A/modules/s/select-data.html","App":"module","Table":"select","form_module":"select-form","router":1},
+    		"select-form":        			{"url":"$A/modules/s/select-form.html","App":"module","Table":"select"},
+    		"services":  	  	  			{"url":"$A/modules/s/services.html","router":1},
+    		"snow":  		  	  			{"url":"$A/modules/s/snow.html","router":1},
+    		"text-input-data":    			{"url":"$A/modules/t/text-input-data.html","App":"module","Table":"text-input","form_module":"text-input-form","router":1},
+    		"text-input-form":    			{"url":"$A/modules/t/text-input-form.html","App":"module","Table":"text-input"},
+    		"trainers":  		  			{"url":"$A/modules/t/trainers.html","router":1},
         }
         //------------------------------------
         $vm.local_url=function(url){
             var urlR=url;
+            urlR=urlR.replace("$A","https://vmiis.github.io/module-examples");
             if($vm.localhost==true){
                 //using local modules for development
                 urlR=urlR.replace('https://vmiis.github.io/module-examples/','http://127.0.0.1:8000/vmiis/module-examples/');
@@ -64,9 +96,7 @@
             return urlR;
         }
         //------------------------------------
-        for(p in $vm.module_links)      $vm.module_links[p]=$vm.local_url($vm.module_links[p]);
         for(p in $vm.module_list)       $vm.module_list[p].url=$vm.local_url($vm.module_list[p].url);
-        for(p in $vm.component_list)    $vm.component_list[p].url=$vm.local_url($vm.component_list[p].url);
         //------------------------------------
         $vm.default_title="Modular distributed web application";
         var txt="Key Alt+mouse double click on a content area will show the source code of the content module and where it is hosted. ";

@@ -155,7 +155,29 @@
                 }
             }
             //------------------------------------
+            /*
             var module_links=function(){
+                var url=$vm.hosting_path+"/modules.js";
+                //------------------------------------------
+                var ver=localStorage.getItem(url+"_ver");
+                var txt=localStorage.getItem(url+"_txt");
+                //------------------------------------------
+                var http127_i=0; if(url.indexOf('http://127.0.0.1')!=-1 || url.indexOf('http://localhost')!=-1) http127_i=1;
+                if(ver!=$vm.ver[0] || txt===null || $vm.reload!='' || http127_i==1){
+                    console.log((new Date().getTime()-$vm.start_time).toString()+' --- loading from url. '+url+" "+ver+"/"+$vm.version+" 127:"+http127_i+" re:"+$vm.reload)
+                    $.get(url+'?_='+$vm.ver[0]+$vm.reload,function(data){
+                        localStorage.setItem(url+"_txt",data);
+                        localStorage.setItem(url+"_ver",$vm.ver[0]);
+                        $('head').append('<scr'+'ipt>'+data+'</scr'+'ipt>');
+                    },'text');
+                }
+                else{
+                    console.log((new Date().getTime()-$vm.start_time).toString()+' --- loading from stotage. '+url+" "+ver+"/"+$vm.version+" 127:"+http127_i+" re:"+$vm.reload)
+                    $('head').append('<scr'+'ipt>'+txt+'</scr'+'ipt>');
+                }
+
+                return;
+
                 var rm=$vm.module_links;
                 if(rm==undefined) return;
                 var i=0
@@ -241,6 +263,7 @@
             //------------------------------------
             module_links();
             //------------------------------------
+            */
         }
         //------------------------------------
         $vm._I=0; $vm._boot=function(){

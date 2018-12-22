@@ -1,0 +1,37 @@
+<div id=D__ID>
+    <div>
+        VmInclude:__COMPONENT__/g/grid.01.html
+    </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/g/grid.01.js
+            //-------------------------------------
+    		var fields="First_name,Last_name,Favorite_color";
+            var fields="_Participant_ID,Subject_ID,Screening_Number,Subject_Initials,Randomisation_Number,Gender,DOB,_Data_Entry,_Login_ID,_Password"; ///*,_Setup,_Quest*/
+            m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
+            m.form_fields=fields;
+            //-------------------------------------
+            m.cell_render=function(records,I,field,td){
+                switch(field){
+                    case '_Participant_ID':
+                        td.html(records[I].UID);
+                        break;
+                    case '_Data_Entry':
+                        td.html("<u style='cursor:pointer'>Data Entry</u>");
+                        td.find('u').on('click',function(){
+    						$vm.load_module('clinical-trials-data-entry','',{record:records[I]});
+                        });
+                        break;
+                    case '_Login_ID':
+                        td.html(records[I].UID+"-"+records[I].Data.Subject_Initials);
+                        break;
+                }
+            }
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/g/grid.01.css
+    </style>
+</div>
