@@ -1,40 +1,18 @@
 <div id=D__ID>
     <div id=form_container__ID>
         <div id=header__ID>
-    		Login Control
+    		Online questionnaire setup
     	</div>
         <form id=F__ID>
             <div class="container">
-                <div class="row row__ID" id=row_participant__ID>
-    				<div class="col-sm-12 col-lg-9">
-    					<span class=label__ID>Participant</span><br>
-    					<input name="Participant" class=form-control id=Participant__ID readonly>
-    				</div>
-    				<div class="col-sm-12 col-lg-3">
-    					<span class=label__ID>Participant ID</span><br>
-    					<input name="Participant_uid" class=form-control id=Participant_uid__ID readonly>
-    				</div>
-    				<br>
-    			</div>
-                <div class="row row__ID">
-    				<div class="col-sm col-lg-6">
-    					<span class=label__ID>Login ID</span><br>
-    					<input type=text name="Login_ID" class=form-control readonly>
-    				</div>
-                    <div class="col-sm col-lg-6">
-    					<span class=label__ID>Password</span><br>
-    					<input type=text name="Password" class=form-control>
-    				</div>
-                    <hr style='border-top:1px solid #666; width:100%'></hr>
-    			</div>
-                <div class="row row__ID">
+                <div class="row">
                     <table id=table_form__ID>
                         <tr id=tr_table_grid__ID><td colspan=2><table id=table_grid__ID></table></td></tr>
                     </table>
                 </div>
-                <div class="row row__ID">
+                <div class="row">
     				<div class="col">
-    					<textarea name="List" class=form-control readonly></textarea>
+    					<textarea name="List" class=form-control readonly style='margin-top:16px'></textarea>
     				</div>
     			</div>
                 <br>
@@ -48,57 +26,40 @@
     </div>
     <script>
         function F__ID(){
-            //---------------------------------------------
-            var this_module			=$vm.module_list[$vm.vm['__ID'].name];
-            var prefix				=this_module.prefix;
-            var form_tid      		=this_module.table_id;
-            var participant_tid     =""; if($vm.module_list[prefix+'participant-data']!=undefined) participant_tid=$vm.module_list[prefix+'participant-data'].table_id;
-            var get_participant_name=function(record){return record.Subject_Initials;}
-            var setup_record;
             //-------------------------------------
-    		var setup_pid=this_module.table_id;
-    		var q_list=undefined;
-            if($vm.module_list[prefix+'quest_list']!=undefined) q_list=$vm.module_list[prefix+'quest_list'].list;
-            if(q_list==undefined){ $vm.alert("No questionnaire list was found"); return;}
-            //---------------------------------------------
-            $('#name__ID').text('Participant Login Setup');
-            //---------------------------------------------
-            $('#D__ID').on('load',function(){
-                $('#F__ID')[0].reset();
-            	$('#submit__ID').show();
-    			load_data();
-    		})
-    		//---------------------------------------------
-            var load_data=function(){
-                setup_record={};
-                var participant_record=$vm.vm['__ID'].input.record;
-                if(participant_record==undefined){
-                    $('#submit__ID').hide();
-                    $vm.alert("No participant info was found");
-                    return;
-                }
-                if(participant_record.UID==undefined){
-                    $vm.alert("No participant UID was found");
-                    return;
-                }
-                $('#Participant_uid__ID').val(participant_record.UID);
-                $('#Participant__ID').val(get_participant_name(participant_record));
-                var sql="select top 1 ID,Information from [TABLE-"+setup_pid+"] where PUID="+participant_record.UID;
-                var req_data={ cmd:"read",qid:$vm.qid,sql:sql}
-                $VmAPI.request({data:req_data,callback:function(res){
-                    if(res.records.length>0){
-                        setup_record=res.records[0];
-                        $vm.deserialize(setup_record,'#F__ID');
-                    }
-                    else{
-                        $('#F__ID textarea[name=List]').val('');
-                        $('#F__ID input[name=Login_ID]').val(participant_record.UID+"-"+form_tid);
-                        $('#F__ID input[name=Password').val($vm.vm_password(8,false));
-                    }
-    				set_check_list();
-                }})
+            VmInclude:__COMPONENT__/f/form.01.js
+			//-------------------------------------
+            var q_list={
+                "Screening":[
+					{"module_id":"1809012356","task_name":"Screening - Consent"},
+                    {"module_id":"1808311410","task_name":"Screening - Epworth Sleepiness Scale"},
+                    {"module_id":"1809010715","task_name":"Screening - pittsburgh sleep quality index"},
+                    {"module_id":"1809010719","task_name":"Screening - Depression anxiety stress scales"},
+					{"module_id":"1809010720","task_name":"Screening - Flinders fatigue scale"},
+					{"module_id":"1809010721","task_name":"Screening - Fatigue severity scale"},
+					{"module_id":"1809010722","task_name":"Screening - Insomnia Severity Index"}
+    			],
+    			"Visit 1":[
+                    {"module_id":"1808311409","task_name":"Visit 1 - Data of visit"}
+    			],
+				"Template":[
+                    {"module_id":"1808311450","task_name":"Template 1"},
+					{"module_id":"1808311454","task_name":"Template 2"}
+    			]
             }
-            //---------------------------------------------
+            //-------------------------------------
+            var load=m.load;
+			m.load=function(){
+				load();
+				if(m.input.record!=undefined){
+                    set_check_list();
+				}
+			}
+			//-------------------------------------
+            m.before_submit=function(data){
+                data['List']=$('#F__ID textarea[name=List]').val();
+			}
+			//-------------------------------------
             var set_check_list=function(){
                 var tab="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
                 var dot='&#8226;&nbsp;';
@@ -107,13 +68,13 @@
                 var No=0;
                 for(visit in q_list){
                     No++;
-                	var task=visit;
+                    var task=visit;
                     var pid="";
-                	txt+="<tr><td>"+No+"</td><td></td><td>"+task+"</td><td><input data-visit='"+task+"' type=checkbox class=visit__ID /></td></tr>";
+                    txt+="<tr><td>"+No+"</td><td></td><td>"+task+"</td><td><input data-visit='"+task+"' type=checkbox class=visit__ID /></td></tr>";
                     var visit_array=q_list[visit];
                     for(k in visit_array){
                         No++;
-                        pid=visit_array[k].table_id;
+                        pid=visit_array[k].module_id;
                         task=visit_array[k].task_name;
                         txt+="<tr><td>"+No+"</td><td>"+pid+"</td><td>"+tab+dot+task+"</td><td><input id=task__ID"+pid+" type=checkbox class=item__ID /></td></tr>";
                     }
@@ -127,14 +88,14 @@
                     var visit_array=q_list[data_visit];
                     if( $(this).prop('checked')==true){
                         for(k in visit_array){
-                            var pid=visit_array[k].table_id;
+                            var pid=visit_array[k].module_id;
                             $("#task__ID"+pid).prop('checked',true);
                         }
                     }
                     else{
                         for(k in visit_array){
-                            var pid=visit_array[k].table_id;
-    						$("#task__ID"+pid).prop('checked',false);
+                            var pid=visit_array[k].module_id;
+                            $("#task__ID"+pid).prop('checked',false);
                         }
                     }
                     set_list();
@@ -145,66 +106,45 @@
             }
             //---------------------------------------------
             var set_box=function(){
-            	var list_val=$('#F__ID textarea[name=List]').val();
-            	var lines=list_val.split(',');
-            	for(var i=0;i<lines.length;i++){
-            		var L=lines[i].length;
-            		if(L>1){
-            			var key=lines[i];
-            			set_check(key);
-            		}
-            	}
+                var list_val=$('#F__ID textarea[name=List]').val();
+                var lines=list_val.split(',');
+                for(var i=0;i<lines.length;i++){
+                    var L=lines[i].length;
+                    if(L>1){
+                        var key=lines[i];
+                        set_check(key);
+                    }
+                }
             }
             //---------------------------------------------
             var set_check=function(key){
-        		$('#table_grid__ID tr').each(function(index){
-        			if(index>0){
-        				var k=$(this).children('td').eq(1).html().trim();
-        				if(k==key){
-        					$(this).children('td').eq(3).find(">:first-child").attr('checked','checked');
-        				}
-        			}
-        		})
-        	}
-        	//---------------------------------------------
-        	var set_list=function(){
-        		var txt="";
-        		$('#table_grid__ID tr').each(function(index){
-        			if(index>0){
-        				var key=$(this).children('td').eq(1).html();
-        				if(key!==""){
-            				var ro=$(this).children('td').eq(3).find(">:first-child").prop('checked');
-            				if(ro===true){
-            					if(txt!='') txt+=",";
-            					txt+=key.trim();
-            				}
-            			}
-        			}
-        		});
-        		$('#F__ID textarea[name=List]').val(txt);
-        	}
-        	//---------------------------------------------
-            $('#F__ID').submit(function(event){
-            	//--------------------------------------------------------
-            	event.preventDefault();
-            	$('#submit__ID').hide();
-            	//--------------------------------------------------------
-                set_list();
-                //--------------------------------------------------------
-            	var data=$vm.serialize('#F__ID');
-                var dbv={PUID:data.Participant_uid,S1:data.Participant,S2:data.Login_ID,S3:data.Password}
-            	//--------------------------------------------------------
-                var rid=setup_record.ID;
-                var req={cmd:"add",qid:$vm.qid,db_pid:form_tid,data:data,dbv:dbv};
-                if(rid!=undefined){
-                    req={cmd:"modify",rid:rid,qid:$vm.qid,db_pid:form_tid,data:data,dbv:dbv};
-                }
-                $VmAPI.request({data:req,callback:function(res){
-                    $vm.refresh=1;
-                    window.history.go(-1);
-                }});
-            })
-            //--------------------------------------------------------
+                $('#table_grid__ID tr').each(function(index){
+                    if(index>0){
+                        var k=$(this).children('td').eq(1).html().trim();
+                        if(k==key){
+                            $(this).children('td').eq(3).find(">:first-child").attr('checked','checked');
+                        }
+                    }
+                })
+            }
+            //---------------------------------------------
+            var set_list=function(){
+                var txt="";
+                $('#table_grid__ID tr').each(function(index){
+                    if(index>0){
+                        var key=$(this).children('td').eq(1).html();
+                        if(key!==""){
+                            var ro=$(this).children('td').eq(3).find(">:first-child").prop('checked');
+                            if(ro===true){
+                                if(txt!='') txt+=",";
+                                txt+=key.trim();
+                            }
+                        }
+                    }
+                });
+                $('#F__ID textarea[name=List]').val(txt);
+            }
+            //---------------------------------------------
         }
     </script>
     <style>
@@ -213,13 +153,6 @@
     		padding:5px 0 5px 10px;
     		overflow:hidden'
     	}
-        /*
-    	#D__ID{
-    		background-color:#fff;
-    		height:100%;
-    		overflow: auto;
-    	}
-        */
     	#tb__ID{
     		/*min-width:100px;*/
     		border-collapse: collapse;

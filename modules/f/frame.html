@@ -118,7 +118,6 @@
             }
             //------------------------------------
             $vm.alert=function(msg){
-              //$('#vm_alert_information div.modal-body').html( $('<div/>').html(msg).text() );
               $('#vm_alert_information div.modal-body').html( msg );
               $("#vm_alert_information").modal();
             }
@@ -127,7 +126,7 @@
               $('#vm_alert_information').modal('hide');
             }
             //------------------------------------
-            if($vm.server!='production') $('#vm_system_info').text((new Date().getTime()-$vm.start_time).toString()+"ms")
+            $('#vm_system_info').text((new Date().getTime()-$vm.start_time).toString()+"ms")
             $vm.app_module=1;
             //------------------------------------
             if(sessionStorage["signinout"]==1){
@@ -139,7 +138,6 @@
                 if(a.length==1) $vm.load_module("home",'',{});
                 else if(a.length==2){
                     $vm.search_module=a[1].split('&')[0].replace(/\//g,'_');
-                    //$vm.load_module_v2($vm.search_module,'',{});
                     //-------------------------------------
                     var I=0;
                     var loop=setInterval(function (){
@@ -155,115 +153,6 @@
                 }
             }
             //------------------------------------
-            /*
-            var module_links=function(){
-                var url=$vm.hosting_path+"/modules.js";
-                //------------------------------------------
-                var ver=localStorage.getItem(url+"_ver");
-                var txt=localStorage.getItem(url+"_txt");
-                //------------------------------------------
-                var http127_i=0; if(url.indexOf('http://127.0.0.1')!=-1 || url.indexOf('http://localhost')!=-1) http127_i=1;
-                if(ver!=$vm.ver[0] || txt===null || $vm.reload!='' || http127_i==1){
-                    console.log((new Date().getTime()-$vm.start_time).toString()+' --- loading from url. '+url+" "+ver+"/"+$vm.version+" 127:"+http127_i+" re:"+$vm.reload)
-                    $.get(url+'?_='+$vm.ver[0]+$vm.reload,function(data){
-                        localStorage.setItem(url+"_txt",data);
-                        localStorage.setItem(url+"_ver",$vm.ver[0]);
-                        $('head').append('<scr'+'ipt>'+data+'</scr'+'ipt>');
-                    },'text');
-                }
-                else{
-                    console.log((new Date().getTime()-$vm.start_time).toString()+' --- loading from stotage. '+url+" "+ver+"/"+$vm.version+" 127:"+http127_i+" re:"+$vm.reload)
-                    $('head').append('<scr'+'ipt>'+txt+'</scr'+'ipt>');
-                }
-
-                return;
-
-                var rm=$vm.module_links;
-                if(rm==undefined) return;
-                var i=0
-                var N=rm.length;
-                //------------------------------------------
-                var load_url=function(url,next){
-                    if($vm.local_url!=undefined){
-                        url=$vm.local_url(url);
-                    }
-                    var storage_url=url;
-                    //------------------------------------------
-                    var ver=localStorage.getItem(storage_url+"_ver");
-                    var txt=localStorage.getItem(storage_url+"_txt");
-                    //------------------------------------------
-                    var http127_i=0; if(url.indexOf('http://127.0.0.1')!=-1 || url.indexOf('http://localhost')!=-1) http127_i=1;
-                    if(ver!=$vm.ver[0] || txt===null || $vm.reload!='' || http127_i==1){
-                        console.log((new Date().getTime()-$vm.start_time).toString()+' --- loading from url. '+url+" "+ver+"/"+$vm.version+" 127:"+http127_i+" re:"+$vm.reload)
-                        $.get(url+'?_='+$vm.ver[0]+$vm.reload,function(data){
-                            localStorage.setItem(storage_url+"_txt",data);
-                            localStorage.setItem(storage_url+"_ver",$vm.ver[0]);
-                            next(data);
-                        },'text');
-                    }
-                    else{
-                        console.log((new Date().getTime()-$vm.start_time).toString()+' --- loading from stotage. '+url+" "+ver+"/"+$vm.version+" 127:"+http127_i+" re:"+$vm.reload)
-                        next(txt);
-                    }
-                    //------------------------------------------
-                }
-                //------------------------------------------
-                var process=function(I,prefix,url){
-                    if(url.substring(0,4)!='http') url=$vm.hosting_path+"/"+url;
-                    load_url(url,function(txt){
-                        var config;
-                        try{ config=JSON.parse(txt);} catch (e){
-                            console.log(txt);
-                            alert(url+"\r\nError in config file\n"+e); return;
-                        }
-                        var modules=config.modules;
-                        var f=url.split('/').pop();
-                        var path=url.replace(f,'');
-                        for (var k in modules){
-                            if(modules[k].url!=undefined){
-                                if(modules[k].url.substring(0,4)=='http') path="";
-                                modules[k].url=path+modules[k].url;
-                                $vm.module_list[prefix+k]=modules[k];
-                                if($vm.local_url!=undefined){
-                                    $vm.module_list[prefix+k].url=$vm.local_url($vm.module_list[prefix+k].url);
-                                }
-                                if(modules[k].prefix==undefined) {
-                                    $vm.module_list[prefix+k].prefix=prefix;
-                                }
-                                //if($vm.search_module==(prefix+k)) $vm.load_module_v2($vm.search_module,'',{});
-                                var snm=modules[k]['name_for_search'];
-                                if(snm!=""){
-                                    if(snm==undefined) snm=prefix+k;
-                                    //$vm.website_module_list_for_search.push({label:snm,value:prefix+k})
-                                }
-                            }
-                            else{
-                                $vm.module_list[prefix+k]=modules[k];
-                            }
-                        }
-                        if(I==N-1){ //all module's link are ready
-                            if($vm.home_process!=undefined) $vm.home_process();
-                        }
-                    })
-                }
-                //------------------------------------------
-                if(N>0){
-                    var link_remote_module_loop=setInterval(function (){
-                        if(i>=N){
-                            clearInterval(link_remote_module_loop);
-                            return;
-                        }
-                        var ns=rm[i].split('|');
-                        if(ns.length==1) process(i,"",ns[0])
-                        else process(i,ns[0]+"_",ns[1]);
-                        i++;
-                    },10);
-                }
-            }
-            //------------------------------------
-            module_links();
-            //------------------------------------
-            */
         }
         //------------------------------------
         $vm._I=0; $vm._boot=function(){

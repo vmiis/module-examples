@@ -7,10 +7,14 @@
             //-------------------------------------
             VmInclude:__COMPONENT__/g/grid.01.js
             //-------------------------------------
+            var data_entry="clinical-trials-data-entry";
+            var setup="online-questionnaire-setup";
+            var online="https://www.vmiis.com/apps/online-questionnaire.html";
+            var online_127="http://127.0.0.1:8000/vmiis/online-questionnaire-example/";
+            //-------------------------------------
     		var fields="First_name,Last_name,Favorite_color";
-            var fields="_Participant_ID,Subject_ID,Screening_Number,Subject_Initials,Randomisation_Number,Gender,DOB,_Data_Entry,_Login_ID,_Password"; ///*,_Setup,_Quest*/
+            var fields="_Participant_ID,Subject_ID,Screening_Number,Subject_Initials,Randomisation_Number,Gender,DOB,_Data_Entry,_Setup,_Quest,_Login_ID,_Password";
             m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
-            m.form_fields=fields;
             //-------------------------------------
             m.cell_render=function(records,I,field,td){
                 switch(field){
@@ -20,7 +24,25 @@
                     case '_Data_Entry':
                         td.html("<u style='cursor:pointer'>Data Entry</u>");
                         td.find('u').on('click',function(){
-    						$vm.load_module('clinical-trials-data-entry','',{record:records[I]});
+    						$vm.load_module(data_entry,'',{record:records[I]});
+                        });
+                        break;
+                    case '_Setup':
+                        td.html("<u style='cursor:pointer'>Setup</u>");
+                        td.find('u').on('click',function(){
+    						$vm.load_module(setup,'',{record:records[I]});
+                        });
+                        break;
+                    case '_Quest':
+                        td.html("<u style='cursor:pointer'>Online Questionnaire</u>");
+                        td.find('u').on('click',function(){
+                            var username=records[I].UID+"-"+records[I].Data.Subject_Initials;
+                            var p="?username="+username+"&password="+records[I].Data.Password;
+                            var q_url=online+p;
+                            if(window.location.hostname=='127.0.0.1' || window.location.hostname=='localhost'){
+                                q_url=online_127+p;
+                            };
+                            window.open(q_url);
                         });
                         break;
                     case '_Login_ID':
