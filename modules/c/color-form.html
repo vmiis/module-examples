@@ -1,10 +1,10 @@
 <div id=D__ID>
     <section id=form_container__ID>
     	<div id=header__ID>
-    		Text input
+    		Color
     	</div>
     	<form id=F__ID>
-    		<div class="container">
+            <div class="container">
     			<div class="row row__ID">
     				<div class=col>
     					<span>First name</span>
@@ -19,8 +19,8 @@
     			</div>
     			<div class="row row__ID">
     				<div class=col>
-    					<span>Notes</span>
-    					<textarea class="form-control" name=Notes></textarea>
+    					<span>Favorite Color</span>
+    					<input type="color" style="border:none;" name="Favorite_color" />
     				</div>
     			</div>
     			<br>
@@ -33,25 +33,17 @@
     	</form>
     </section>
     <script>
-    	function F__ID(){
+        function F__ID(){
     		//-------------------------------------
             VmInclude:__COMPONENT__/f/form.01.js
-    		//-------------------------------------
-    	}
+            //-------------------------------------
+        }
     </script>
     <style>
-    	#F__ID div span{
-    		display:inline-block;
-    		padding-bottom:5px;
-    	}
-    	#F__ID div label{
-    		display:inline-block;
-    	}
     	#D__ID{
     		height:100%;
     		overflow:auto;
     		animation: vm_module_fadein 1.0s;
-    		background-color:#fff;
     	}
         #form_container__ID{
             margin-top:20px;
@@ -62,12 +54,14 @@
     		font-family: Verdana,sans-serif;
         	font-size: 15px;
         	line-height: 1.5;
+    		color: #fff;
+            background-color: #465a69;
     	}
     	#form_container__ID .row__ID{
-    		padding:6px 5px;
+    		padding:6px 0;
     	}
     	#form_container__ID .row__ID:hover{
-    		background-color: #ddd;
+    		background-color: #203342;
     	}
     	#header__ID{
     		background-color:#727b84;
@@ -81,8 +75,12 @@
     		border:1px solid #bbb;
             border-top-width: 0;
     		padding:6px 15px 20px 15px;
-    		margin-bottom:200px;
     	}
+    	#F__ID label
+        	display: inline-block;
+        	margin: .6rem 0 .3rem 0;
+    	}
+
     	#F__ID fieldset {
     	    border: 0px solid #c0c0c0;
     	    margin: 0;
@@ -93,8 +91,5 @@
     			padding:20px 10px 50px 10px;
     		}
     	}
-        .C__ID {
-            background-color: #ccc;
-        }
     </style>
 </div>
