@@ -37,7 +37,7 @@
                         td.html("<u style='cursor:pointer'>Online Questionnaire</u>");
                         td.find('u').on('click',function(){
                             var username=records[I].UID+"-"+records[I].Data.Subject_Initials;
-                            var p="?username="+username+"&password="+records[I].Data.Password;
+                            var p="?username="+username+"&password="+records[I].Data._Password;
                             var q_url=online+p;
                             if(window.location.hostname=='127.0.0.1' || window.location.hostname=='localhost'){
                                 q_url=online_127+p;
