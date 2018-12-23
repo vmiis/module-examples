@@ -5,6 +5,19 @@
 		</div>
 		<form id=F__ID>
 			<div class="container">
+                <!-- participant part for all tsak forms -------------------->
+                <div class="row row__ID" id=row_participant__ID>
+                    <div class="col-sm-12 col-lg-9 input__ID">
+                        <span class=label__ID>Participant</span><br>
+                        <input type=text name="Participant" class=form-control id=Participant__ID data-id="Participant" />
+                    </div>
+                    <div class="col-sm-12 col-lg-3 input__ID">
+                        <span class=label__ID>Participant ID</span><br>
+                        <input type=text name="Participant_uid" class=form-control readonly />
+                    </div>
+                    <hr style="border-top: 1px solid #888;width: 100%;margin:10px 0">
+                </div>
+                <!---------------------------------------------------->
 	            <div class="row">
 	                How likely are you to doze or fall asleep in the following situations, in contrast to just feeling tired?
 	                This refers to your usual way of life in recent times. Even if you have not done some of these things recently,
@@ -112,28 +125,31 @@
 		function F__ID(){
 			//-------------------------------------
             VmInclude:__COMPONENT__/f/form.01.js
+            VmInclude:__CURRENT_PATH__/../../../components/c/clinical-trials-task-form.js
 			//-------------------------------------
-			m.before_submit=function(record){
-				if(record.ESS_1!='' &&
-					record.ESS_2!='' &&
-					record.ESS_3!='' &&
-					record.ESS_4!='' &&
-					record.ESS_5!='' &&
-					record.ESS_6!='' &&
-					record.ESS_7!='' &&
-					record.ESS_8!=''){
-			        	record.ESS=(
-							parseInt(record.ESS_1)+
-							parseInt(record.ESS_2)+
-							parseInt(record.ESS_3)+
-							parseInt(record.ESS_4)+
-							parseInt(record.ESS_5)+
-							parseInt(record.ESS_6)+
-							parseInt(record.ESS_7)+
-							parseInt(record.ESS_8)
+            var before_submit=m.before_submit;
+            m.before_submit=function(data){
+				if(data.ESS_1!='' &&
+					data.ESS_2!='' &&
+					data.ESS_3!='' &&
+					data.ESS_4!='' &&
+					data.ESS_5!='' &&
+					data.ESS_6!='' &&
+					data.ESS_7!='' &&
+					data.ESS_8!=''){
+			        	data.ESS=(
+							parseInt(data.ESS_1)+
+							parseInt(data.ESS_2)+
+							parseInt(data.ESS_3)+
+							parseInt(data.ESS_4)+
+							parseInt(data.ESS_5)+
+							parseInt(data.ESS_6)+
+							parseInt(data.ESS_7)+
+							parseInt(data.ESS_8)
 						).toString();
 			    }
 			    //-------------------
+                return before_submit(data);
 			}
 			//-------------------------------------
 		}

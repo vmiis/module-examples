@@ -37,7 +37,7 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.2.1.min.js"></script>
     <script main-code>
         //------------------------------------
-        $vm={};$vm.ver=[0.09,0.09];
+        $vm={};$vm.ver=[0.10,0.10];
         $vm.start_time=new Date().getTime();
         $vm.api_address="https://api.wappsystem.com";
         if(window.location.toString().indexOf('_p=1')!=-1) $vm.api_address="https://api.wappsystem.com:3000";
@@ -55,13 +55,13 @@
     		"carousel":  		  			{"url":"$A/c/carousel.html","router":1},
     		"checkbox-data":      			{"url":"$A/c/checkbox-data.html","App":"module","Table":"checkbox","form_module":"checkbox-form","router":1},
     		"checkbox-form":      			{"url":"$A/c/checkbox-form.html","App":"module","Table":"checkbox"},
-    		"consent-data":  	  			{"url":"$A/c/consent-data.html","App":"module","Table":"consent","form_module":"consent-form","router":1},
-    		"consent-form":  	  			{"url":"$A/c/consent-form.html","App":"module","Table":"consent","router":1},
+    		"consent-data":  	  			{"url":"$A/c/consent-data.html","App":"module","Table":"consent","form_module":"consent-form"},
+    		"consent-form":  	  			{"url":"$A/c/consent-form.html","App":"module","Table":"consent"},
             "color-data":      	  			{"url":"$A/c/color-data.html","App":"module","Table":"color","form_module":"color-form","router":1},
     		"color-form":      	  			{"url":"$A/c/color-form.html","App":"module","Table":"color"},
     		"date-data":      	  			{"url":"$A/d/date-data.html","App":"module","Table":"date","form_module":"date-form","router":1},
     		"date-form":      	 		 	{"url":"$A/d/date-form.html","App":"module","Table":"date"},
-            "ess-data":      	  			{"url":"$A/e/epworth-sleepiness-scale-data.html","App":"module","Table":"ess","form_module":"ess-form","router":1},
+            "ess-data":      	  			{"url":"$A/e/epworth-sleepiness-scale-data.html","App":"module","Table":"ess","form_module":"ess-form"},
     		"ess-form":      	  			{"url":"$A/e/epworth-sleepiness-scale-form.html","App":"module","Table":"ess"},
             "file-data":      	  			{"url":"$A/f/file-data.html","App":"module","Table":"file","form_module":"file-form","router":1},
     		"file-form":      	  			{"url":"$A/f/file-form.html","App":"module","Table":"file"},
