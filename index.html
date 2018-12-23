@@ -37,7 +37,7 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.2.1.min.js"></script>
     <script main-code>
         //------------------------------------
-        $vm={};$vm.ver=[0.11,0.11];
+        $vm={};$vm.ver=[0.12,0.12];
         $vm.start_time=new Date().getTime();
         $vm.api_address="https://api.wappsystem.com";
         if(window.location.toString().indexOf('_p=1')!=-1) $vm.api_address="https://api.wappsystem.com:3000";
@@ -45,14 +45,16 @@
         //------------------------------------
         $vm.module_list={
             "home":                         {"url":"$A/h/home.html","router":1},
-            "frame":                        {"url":"$A/f/frame.html"},
 
             "2-columns-contents": 			{"url":"$A/2/2-columns-contents.html","router":1},
-    		"about":  		  	  			{"url":"$A/a/about.html","router":1},
-    		"autocomplete-data":  			{"url":"$A/a/autocomplete-data.html","App":"module","Table":"autocomplete","form_module":"autocomplete-form","router":1},
+
+            "about":  		  	  			{"url":"$A/a/about.html","router":1},
+            "autocomplete-data":  			{"url":"$A/a/autocomplete-data.html","App":"module","Table":"autocomplete","form_module":"autocomplete-form","router":1},
     		"autocomplete-form":  			{"url":"$A/a/autocomplete-form.html","App":"module","Table":"autocomplete"},
-    		"bubble":  		  	  			{"url":"$A/b/bubble.html","router":1},
-    		"clinical-trials-data-entry": 	{"url":"$A/c/clinical-trials-data-entry.html"},
+
+            "bubble":  		  	  			{"url":"$A/b/bubble.html","router":1},
+
+            "clinical-trials-data-entry": 	{"url":"$A/c/clinical-trials-data-entry.html"},
     		"carousel":  		  			{"url":"$A/c/carousel.html","router":1},
     		"checkbox-data":      			{"url":"$A/c/checkbox-data.html","App":"module","Table":"checkbox","form_module":"checkbox-form","router":1},
     		"checkbox-form":      			{"url":"$A/c/checkbox-form.html","App":"module","Table":"checkbox"},
@@ -60,31 +62,58 @@
     		"consent-form":  	  			{"url":"$A/c/consent-form.html","App":"module","Table":"consent"},
             "color-data":      	  			{"url":"$A/c/color-data.html","App":"module","Table":"color","form_module":"color-form","router":1},
     		"color-form":      	  			{"url":"$A/c/color-form.html","App":"module","Table":"color"},
-    		"date-data":      	  			{"url":"$A/d/date-data.html","App":"module","Table":"date","form_module":"date-form","router":1},
+
+            "date-data":      	  			{"url":"$A/d/date-data.html","App":"module","Table":"date","form_module":"date-form","router":1},
     		"date-form":      	 		 	{"url":"$A/d/date-form.html","App":"module","Table":"date"},
+            "dass-data":	 	            {"url":"$A/d/depression-anxiety-stress-scales-data.html","App":"module","Table":"dass","form_module":"dass-form"},
+    		"dass-form":	 	            {"url":"$A/d/depression-anxiety-stress-scales-form.html","App":"module","Table":"dass"},
+
             "ess-data":      	  			{"url":"$A/e/epworth-sleepiness-scale-data.html","App":"module","Table":"ess","form_module":"ess-form"},
     		"ess-form":      	  			{"url":"$A/e/epworth-sleepiness-scale-form.html","App":"module","Table":"ess"},
+
+            "ffs-data":      	  			{"url":"$A/f/flinders-fatigue-scale-data.html","App":"module","Table":"ffs","form_module":"ffs-form"},
+    		"ffs-form":      	  			{"url":"$A/f/flinders-fatigue-scale-form.html","App":"module","Table":"ffs"},
             "file-data":      	  			{"url":"$A/f/file-data.html","App":"module","Table":"file","form_module":"file-form","router":1},
     		"file-form":      	  			{"url":"$A/f/file-form.html","App":"module","Table":"file"},
+            "fss-data":      	  			{"url":"$A/f/fatigue-severity-scale-data.html","App":"module","Table":"fss","form_module":"fss-form"},
+    		"fss-form":      	  			{"url":"$A/f/fatigue-severity-scale-form.html","App":"module","Table":"fss"},
             "fountains-illumination":		{"url":"$A/f/fountains-illumination.html","router":1},
-    		"hello-world": 		  			{"url":"$A/h/hello-world.html","router":1},
-    		"nasa":  		  	  			{"url":"$A/n/nasa.html","router":1},
+            "frame":                        {"url":"$A/f/frame.html"},
+
+            "hello-world": 		  			{"url":"$A/h/hello-world.html","router":1},
+
+            "isi-data":      	  			{"url":"$A/i/insomnia-severity-index-data.html","App":"module","Table":"isi","form_module":"isi-form"},
+    		"isi-form":      	  			{"url":"$A/i/insomnia-severity-index-form.html","App":"module","Table":"isi"},
+
+            "nasa":  		  	  			{"url":"$A/n/nasa.html","router":1},
     		"nyan":  		  	  			{"url":"$A/n/nyan.html","router":1},
-    		"online-questionnaire-setup": 	{"url":"$A/o/online-questionnaire-setup.html","App":"module","Table":"participant"},
-    		"panel":    		  			{"url":"$A/p/panel.html","router":1},
+
+            "online-questionnaire-setup": 	{"url":"$A/o/online-questionnaire-setup.html","App":"module","Table":"participant"},
+
+            "panel":    		  			{"url":"$A/p/panel.html","router":1},
     		"particle":  		  			{"url":"$A/p/particle.html","router":1},
     		"prices":  		  	  			{"url":"$A/p/prices.html","router":1},
     		"participant-data":   			{"url":"$A/p/participant-data.html","App":"module","Table":"participant","form_module":"participant-form","router":1},
     		"participant-form":   			{"url":"$A/p/participant-form.html","App":"module","Table":"participant"},
+            "psqi-data":                    {"url":"$A/p/pittsburgh-sleep-quality-index-data.html","App":"module","Table":"psqi","form_module":"psqi-form"},
+    		"psqi-form":   			        {"url":"$A/p/pittsburgh-sleep-quality-index-form.html","App":"module","Table":"psqi"},
+
+            "quest-panel":                  {"url":"$A/o/online-questionnaire-panel.html"},
+
             "radio-data":      	  			{"url":"$A/r/radio-data.html","App":"module","Table":"radio","form_module":"radio-form","router":1},
     		"radio-form":      	  			{"url":"$A/r/radio-form.html","App":"module","Table":"radio"},
+
             "select-data":        			{"url":"$A/s/select-data.html","App":"module","Table":"select","form_module":"select-form","router":1},
     		"select-form":        			{"url":"$A/s/select-form.html","App":"module","Table":"select"},
     		"services":  	  	  			{"url":"$A/s/services.html","router":1},
     		"snow":  		  	  			{"url":"$A/s/snow.html","router":1},
-    		"text-input-data":    			{"url":"$A/t/text-input-data.html","App":"module","Table":"text-input","form_module":"text-input-form","router":1},
+
+            "text-input-data":    			{"url":"$A/t/text-input-data.html","App":"module","Table":"text-input","form_module":"text-input-form","router":1},
     		"text-input-form":    			{"url":"$A/t/text-input-form.html","App":"module","Table":"text-input"},
     		"trainers":  		  			{"url":"$A/t/trainers.html","router":1},
+
+            "visit-date-data":    			{"url":"$A/v/visit-date-data.html","App":"module","Table":"visit-date","form_module":"visit-date-form"},
+    		"visit-date-form":    			{"url":"$A/v/visit-date-form.html","App":"module","Table":"visit-date"},
         }
         //------------------------------------
         $vm.local_url=function(url){
